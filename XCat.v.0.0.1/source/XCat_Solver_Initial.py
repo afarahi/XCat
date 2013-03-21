@@ -28,7 +28,7 @@ def normal_dev(n):
         fac      = sqrt(-2.0*log(r)/r)
         gdev[i]  = v1*fac
         gdevx[i] = v2*fac
-        i += 1
+        i       += 1
    return (gdev,gdevx)
 
 def Solver(Halo_data):
@@ -50,13 +50,13 @@ def Solver(Halo_data):
    print "DONE"
 
    for i in range(n_data):
-      lnLxRo    = Roza_Para.a + Roza_Para.alpha*ln(Halo_data.M500[i]/Roza_Para.mass)
+      lnLxRo    = Roza_Para.a + Roza_Para.alpha * log(Halo_data.M500[i]/Roza_Para.mass)
       lgLxRo[i] = lnLxRo/ln10 
-      lgLxbar[i]= lgLxRo[i] + Roza_Para.LxExPow * log(Ez/EzRo)
+      lgLxbar[i]= lgLxRo[i] + Roza_Para.LxExPow * log10(Ez/EzRo)
 
       (Ez,EzRo) = Ev_factors(Cosmology.Omega_M,Cosmology.Omega_DE,Halo_data.Z_red[i])
-      lghM15[i] = log(Cosmology.h_0 * Ez * Halo_data.M500[i] / 10.0)
-      lgTbar[i] = log(Henry_Para.T_15) + Henry_Para.alpha_T* lghM15[i]
+      lghM15[i] = log10(Cosmology.h_0 * Ez * Halo_data.M500[i] / 10.0)
+      lgTbar[i] = log10(Henry_Para.T_15) + Henry_Para.alpha_T*lghM15[i]
    print "DONE"
 
    (gdev,gdevx) = normal_dev(n_data)
@@ -71,35 +71,27 @@ def Solver(Halo_data):
       gdevT[i]  = Cosmology.rTL*gdev + sqrt(1.0-Cosmology.rTL**2)*gdevX
       #! --- assign random temps w/ covariance (thru gdevT)
       lnt[i]    = ln10*lgTbar[i] + Henry_Para.siglnT*gdevT[i]
-      Tx        = exp(lnt)
-      lgT[i]    = log(Tx)
+      Tx        = exp(lnt[i])
+      lgT[i]    = log10(Tx)
       #! ---- random scatter in luminosities 
       lnl[i]    = ln10*lgLxbar[i] + Rozo_Para.siglnL*gdev[i]
       K1        = K1fac[0] + lgT[i]*(K1fac[1] + lgT[i]*K1fac[2])
       K2        = K2fac[0] + lgT[i]*(K2fac[1] + lgT[i]*K2fac[2])
+      #! set LobsLrest = sqrt(1+ (1+log10(Tx/5))*zred)
       LobsLrest = 1.0 + Halo_data.Z_red[i]*(K1 + K2*Halo_data.Z_red[i])
       lnlobs[i] = lnl + Cosmology.K_corr*log(LobsLrest)
       #lnlbarobs = ln10*lgLxbar + $Kcorr*ln(LobsLrest)
    print "DONE"
 
-
-   lnMt     = []
-   lnML     = []
-   lgLxf    = []
-   lgLxobsf = []
-   lgTf     = []
-#   lgMF     = []
-#   lgfxf    = []
-
    #! --- apply flux limit and extract data
    for i in range(n_data):
       fx = flux_cal(Halo_data.X[i],Halo_data.Y[i],Halo_data.Z[i],Halo_data.Z_red[i],Cosmology.h_0,lnlobs[i])
       if ( fx > Cosmology.Flim ):
-        lnMT.append(      -(Henry_Para.siglnT/Henry_Para.alpha_T) * gdevT[i]         )
-        lnML.append(      -(Rozo_Para.siglnL/Rozo_Para.alpha)*gdev[i]                )
-        lgLxf.append(     lnl[i]/ln10                                                )
-        lgLxobsf.append(  lnlobs[i]/ln10                                             )
-        lgTf.append(      lnt[i]/ln10                                                )
-#        lgMf.append(      lgM                                                        )
-#        lgfxf.append(     log(fx)                                                    )
+        Halo_data.lnMT[i]     = -(Henry_Para.siglnT/Henry_Para.alpha_T) * gdevT[i]         
+        Halo_data.lnML[i]     = -(Rozo_Para.siglnL/Rozo_Para.alpha)*gdev[i]                
+        Halo_data.lgLx[i]     = lnl[i]/ln10                                                
+        Halo_data.lgLxobs[i]  = lnlobs[i]/ln10                                             
+        Halo_data.lgT[i]      = lnt[i]/ln10                                                
+        Halo_data.lgfxf[i]    = log(fx)                                                    
 
+   return Halo_data

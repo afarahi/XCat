@@ -2,12 +2,14 @@ from XCat_Read_Catalog          import Read_Halo_Cat
 from XCat_Cosmology_Parameters  import Input_Parameters
 from XCat_Halos_Data            import Halo_Object
 from XCat_Solver_Initial        import Solver
+#from test                       import test
 
 def main_tasks():
+#    test()
     Halos_info = Read_Halo_Cat()
     Input_Param= Input_Parameters()
     Halo_data  = Halo_Object(Halos_info,Input_Param)
-    Solver(Halo_data)
+    Halo_data  = Solver(Halo_data)
 #    Cosmo = Input_Parameters()
     return 0
 

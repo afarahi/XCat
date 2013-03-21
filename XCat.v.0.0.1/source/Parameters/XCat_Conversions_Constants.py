@@ -1,6 +1,7 @@
 from XCat_Utilities  import read_data_float
 
 pi = 3.141592653589793238462643383279502884197169
+areasqdeg = pi*(180.0/pi)*(180.0/pi)
 
 #! --- flux conversion: uses L in 1e44 erg/s
 Gpc2cm = 3.086e27

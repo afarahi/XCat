@@ -7,18 +7,25 @@ class Halo_Object():
 
    def __init__(self,Halos_info,Input_Param):
 
-     self.X       = []
-     self.Y       = []
-     self.Z       = []
+     self.X        = []
+     self.Y        = []
+     self.Z        = []
 
-     self.RA      = []
-     self.DEC     = []
+     self.RA       = []
+     self.DEC      = []
 
-     self.M500    = []
-     self.R500    = []
-     self.lgM500  = []
+     self.M500     = []
+     self.R500     = []
+     self.lgM500   = []
 
-     self.Z_red   = []
+     self.Z_red    = []
+
+     self.lgT      = []
+     self.lnMT     = []
+     self.lnML     = []
+     self.lgLx     = []
+     self.lgfx     = []
+     self.lgLxobsf = []
      
      n = len(Halos_info.field('HALOPX')[:])
 
@@ -33,9 +40,16 @@ class Halo_Object():
 
           self.M500.append(Halos_info.field('M500')[i])
           self.R500.append(Halos_info.field('R500')[i])
-          self.lgM500.append(Halos_info.field('M500')[i])
+          self.lgM500.append(log10(Halos_info.field('M500')[i])/(Input_Param.h_0 *1e14))
 
           self.Z_red.append(Halos_info.field('Z')[i])
+
+          self.lgT.append(0.0)
+          self.lnMT.append(0.0)
+          self.lnML.append(0.0)
+          self.lgLx.append(0.0)
+          self.lgfx.append(0.0)
+          self.lgLxobs.append(0.0)
      
      print "Number of Halos = ", n
      print "INITIALIZED SUCCESSFULLY."
