@@ -1,35 +1,20 @@
 from XCat_Utilities import read_data_string
-import pyfits
 
-def Read_Halo_Cat():
-    name    = read_data_string(tag_name = 'File_name' , file_name = 'parameters/Cosmological_Parameters.xml')
+def Read_Halo_Cat_fit():
+    import pyfits
+    name    = read_data_string(tag_name = 'File_name' , file_name = 'parameters/Input_Parameters.xml')
     file_address = 'Catalog/Input_File/' + name
     print "Reading Halo Catalog ..."
     Halos_list = pyfits.open(file_address)
     Halos_list.info()
+    Halos_head = Halos_list[1].header
     Halos_info = Halos_list[1].data
-#    print Halos_info[2]
+#    Halos_info = Halos_list[1].data[1:50000]
+#    print "DONE"
+#    pyfits.writeto('new.fit',Halos_info,Halos_head)
 #    print Halos_info.field('HALOPX')[2]
     print "Reading Halo Catalog is done."
     return Halos_info
-
-#hdulist.info()
-
-#hdulist[0].header
-
-#print 'STARTED'
-#data = hdulist[1].data
-#print 'FINISHED'
-
-#print data[1]
-#print data[2]
-#print data[3]
-
-#cols = hdulist[1].columns
-#cols.info()
-#cols.names
-#hdulist.close()
-
 
 #HALO FILE STRUCTURE:
 

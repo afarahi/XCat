@@ -1,0 +1,16 @@
+<Cosmological_Parameters>
+  <Intrinsic_T-L_correlation>
+     <rTL_correlation>0.0</rTL_correlation>
+  </Intrinsic_T-L_correlation>
+  <Limits>
+    <F_limit>2.5e-14</F_limit>
+    <Mass_limit>0.01</Mass_limit>
+  </Limits>
+  <Models>
+     <Lxm_model>Rozo_et_al_2012</Lxm_model>
+     <Txm_model>Henry_et_al_2009</Txm_model>
+  </Models>
+  <Input_File>
+    <File_name>Sample1.fit</File_name>
+  </Input_File>
+</Cosmological_Parameters>
