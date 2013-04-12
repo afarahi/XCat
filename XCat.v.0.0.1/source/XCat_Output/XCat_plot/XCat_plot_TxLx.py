@@ -5,24 +5,27 @@ from matplotlib                  import rc
 
 rc('font',family='serif')
 
-def plot_TxLx(Halo_data):
+def plot_TxLx(Sliced_Halo_data,mode = 1):
 
-    n = Halo_data.number_of_halos
-    Z_max = max(Halo_data.Z_red)
-    
-    plot(Halo_data.lgT,Halo_data.lgLx,'.b')
+    Sl_n  = len(Sliced_Halo_data)
 
-#    for i in range(n): 
-#      plot(Halo_data.lgT[i],Halo_data.lgLx[i],'.',color=[Halo_data.Z_red[i]/Z_max,0.0,1.0-Halo_data.Z_red[i]/Z_max])
+    Z_max = max(Sliced_Halo_data[Sl_n-1].Z_red[:])
+
+    clf()
+    if (Sl_n != 1):
+      for i in range(Sl_n):
+         plot(Sliced_Halo_data[i].lgT,Sliced_Halo_data[i].lgLx,'.',color=(float(i)/float(Sl_n-1),0.0,1.0-float(i)/float(Sl_n-1)))
+    else:
+      plot(Sliced_Halo_data[0].lgT,Sliced_Halo_data[0].lgLx,'.b')
 
     #Plotting
-    fdir  = './Output/plots/'
+    fdir  = './Output/plots/Tx-Lx/'
     rc('text',usetex=True)
-    xlabel(r'$kT_X~(keV)$',fontsize = 20)
-    ylabel(r'$0.5-2~(keV)~L_X~(10^{44}h_{0}^{-2}\erg~s^{-1})$',fontsize = 20)
-    fname = 'TxLx_color_v1.pdf'
+    xlabel(r'$log(kT_X)~(keV)$',fontsize = 20)
+    ylabel(r'$0.5-2~(keV)~log(L_X)~(10^{44}h_{0}^{-2}\erg~s^{-1})$',fontsize = 20)
+    fname = 'TxLx_color.pdf'
     print 'Saving plot', fname
-    savefig(fdir+fname)
+    savefig(fdir+fname,dpi=200)
     rc('text',usetex=False)  
 
     return 0

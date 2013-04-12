@@ -10,7 +10,8 @@ sys.path.insert(0,sys.path[6]+'/XCat_Output')
 sys.path.insert(0,sys.path[7]+'/XCat_Output/XCat_plot')
 sys.path.insert(0,sys.path[8]+'/XCat_Output/XCat_Report')
 sys.path.insert(0,sys.path[9]+'/XCat_Solver')
-sys.path.insert(0,sys.path[10]+'/healpy')
+sys.path.insert(0,sys.path[10]+'/XCat_Properties')
+sys.path.insert(0,sys.path[11]+'/healpy')
 
 from XCat_Tasks import main_tasks
 from test       import test

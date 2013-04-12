@@ -1,10 +1,12 @@
 <Output>
   <Plots>
      <sky_projection>False</sky_projection>
-     <Tx_Lx>False</Tx_Lx>
+     <Tx_Lx>True</Tx_Lx>
      <HEALPix_sky_projection>True</HEALPix_sky_projection>
-        <nside>32</nside>
-        <HEALPix_module>Count</HEALPix_module>
+        <nside>128</nside>
+        <HEALPix_module>count</HEALPix_module>
+        <HEALPix_Cartesian>True</HEALPix_Cartesian>
+        <HEALPix_Graticule>True</HEALPix_Graticule>
   </Plots>
   <Report>True</Report>
 </Output>

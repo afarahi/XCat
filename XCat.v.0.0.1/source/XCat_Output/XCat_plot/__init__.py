@@ -7,8 +7,8 @@ except NameError:
         pass
 
 try:
-    from XCat_plot_sky_proj_healpy import (plot_sky_projection_healpy_count, 
-                                           plot_sky_projection_healpy_simple,
+    from XCat_plot_sky_proj_healpy import (plot_sky_projection_healpy_count , 
+                                           plot_sky_projection_healpy_simple ,
                                            plot_sky_projection_healpy_all)  
 except ImportError:
     warnings.warn("Warning: Cannot import visualisation tools (needs matplotlib and healpy)",
@@ -22,6 +22,14 @@ except ImportError:
 
 try:
     from XCat_plot_TxLx            import plot_TxLx
+except ImportError:
+    warnings.warn("Warning: Cannot import visualisation tools (needs matplotlib and healpy)",
+                  category=ImportWarning)
+
+try:
+   from XCat_plot_sky_proj_healpy_zoom import ( plot_sky_projection_healpy_count_zoom  ,
+                                                plot_sky_projection_healpy_simple_zoom ,
+                                                plot_sky_projection_healpy_linear_zoom )
 except ImportError:
     warnings.warn("Warning: Cannot import visualisation tools (needs matplotlib and healpy)",
                   category=ImportWarning)

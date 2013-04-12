@@ -1,4 +1,8 @@
 <Input_Parameters>
+  <Auto_mode>False</Auto_mode>
+  <Features>
+     <red_shift_slices>2</red_shift_slices>
+  </Features>
   <Intrinsic_T-L_correlation>
      <rTL_correlation>0.0</rTL_correlation>
   </Intrinsic_T-L_correlation>

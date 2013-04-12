@@ -5,6 +5,7 @@ def Save_Halo_Cat_fit(Halo_data):
     name    = 'Cat.fits'#read_data_string(tag_name = 'File_name' , file_name = 'parameters/Cosmological_Parameters.xml')
     file_address = 'Catalog/Output_File/' + name
     print "Saving Halo Catalog ..."
+
 #    hdulist = pyfits.open('file_address')
 
     col1 = pyfits.Column(name='HALOPX', format='E', array=array(Halo_data.X))
@@ -14,14 +15,13 @@ def Save_Halo_Cat_fit(Halo_data):
     col4 = pyfits.Column(name='RA', format='E', array=array(Halo_data.RA))
     col5 = pyfits.Column(name='DEC', format='E', array=array(Halo_data.DEC))
 
-    col6 = pyfits.Column(name='M500', format='E', array=array(Halo_data.M500))
-    col7 = pyfits.Column(name='R500', format='E', array=array(Halo_data.R500))
+    col6 = pyfits.Column(name='M200', format='E', array=array(Halo_data.M500))
 
-    col8 = pyfits.Column(name='Z', format='E', array=array(Halo_data.Z_red))
+    col7 = pyfits.Column(name='Z', format='E', array=array(Halo_data.Z_red))
 
-    print col8
+    print col7
 
-    cols = pyfits.ColDefs([col1, col2, col3, col4, col5, col6, col7, col8])
+    cols = pyfits.ColDefs([col1, col2, col3, col4, col5, col6, col7])
     
     print cols
     

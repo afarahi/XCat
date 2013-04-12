@@ -5,6 +5,9 @@ class Input_Parameters:
 
    def __init__(self):
 
+      #Auto_mode
+      self.Auto_mode   = read_data_bool(tag_name = 'Auto_mode',file_name = 'parameters/Input_Parameters.xml')
+
       #Cosmology         
       self.h_0         = read_data_float(tag_name = 'Hubble_Parameter',file_name = 'parameters/Cosmological_Parameters.xml')
       self.Omega_DE    = read_data_float(tag_name = 'Omega_DE',file_name = 'parameters/Cosmological_Parameters.xml')
@@ -16,11 +19,26 @@ class Input_Parameters:
       self.w           = read_data_float(tag_name = 'w',file_name = 'parameters/Cosmological_Parameters.xml')
       self.ns          = read_data_float(tag_name = 'ns',file_name = 'parameters/Cosmological_Parameters.xml')
 
+      #Features
+      self.red_shift_n = read_data_int(tag_name = 'red_shift_slices',file_name = 'parameters/Input_Parameters.xml')
+
       #Models
       self.Lxm_mod     = read_data_string(tag_name = 'Lxm_model',file_name = 'parameters/Input_Parameters.xml')
       self.Txm_mod     = read_data_string(tag_name = 'Txm_model',file_name = 'parameters/Input_Parameters.xml')
-      self.Lxm_para_obj= XCat_Dictionary["Lxm_module_parameters"][self.Lxm_mod]
-      self.Txm_para_obj= XCat_Dictionary["Txm_module_parameters"][self.Txm_mod]
+      try:
+         self.Lxm_para_obj= XCat_Dictionary["Lxm_module_parameters"][self.Lxm_mod]
+      except KeyError:
+         print "Input Lxm Parameter method is not matching with data ..."
+         print "Please change your file and try again ..."
+         raw_input("Press enter to continue ... ")
+         pass
+      try:
+         self.Txm_para_obj= XCat_Dictionary["Txm_module_parameters"][self.Txm_mod]
+      except KeyError:
+         print "Input Txm Parameter method is not matching with data ..."
+         print "Please change your file and try again ..."
+         raw_input("Press enter to continue ... ")
+         pass
 
       #Exctra Parameters
       self.rTL         = read_data_float(tag_name = 'rTL_correlation',file_name = 'parameters/Input_Parameters.xml')

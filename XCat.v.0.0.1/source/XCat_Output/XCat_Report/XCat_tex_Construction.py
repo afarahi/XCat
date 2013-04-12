@@ -1,5 +1,9 @@
-from numpy           import loadtxt
-from XCat_Dictionary import *
+from numpy                 import loadtxt
+from XCat_Dictionary       import *
+from XCat_tex_Introduction import Report_Introduction
+from XCat_tex_Results      import Report_Results
+from XCat_tex_Parameters   import Report_Parameters
+from XCat_tex_bib          import Report_bib
 
 def Report_File(Halo,Input,Output):
     import os
@@ -7,9 +11,9 @@ def Report_File(Halo,Input,Output):
     import shlex
 
     content= Report_title() \
-            +Report_introduction()\
-            +Report_Reuslts(Halo,Input,Output)\
-            +Report_parameters(Halo,Input,Output)\
+            +Report_Introduction()\
+            +Report_Results(Halo,Input,Output)\
+            +Report_Parameters(Halo,Input,Output)\
             +Report_Acknowledgments()\
             +Report_bib()
  
@@ -60,68 +64,6 @@ In progress ...
     return S
 
 
-def Report_introduction():
-    S = r'''
-\section{Introduction}
-
-\XCat\ is an open source code for data analysing of X-Ray observational data of variouse fields in AdS spaces. It is developed in 2013 by Arya Farahi for ... project under guidance of August E. Evrard at University of Michigan - Ann Arbor. '''
-    return S
-
-
-def Report_Reuslts(Halo,Input,Output):
-    S = r''' '''
-    if  Output.HEALPix_sky_proj:
-      if (Output.HEALpix_mod == plot_sky_projection_healpy_count):
-         S += r'''
-\section{Results}
-\subsection{Final Plots}
-
-\begin{figure}[hbt]
- \centering
- \includegraphics[width=12cm]{./Output/plots/HEALPix/sky_projection_HEALPix_Count_''' + str(Output.nside) + r'''.pdf}
- \caption{Plot of sky projection.}
- \label{fig:S-ProjCount}
-\end{figure}
-
-'''
-      elif (Output.HEALpix_mod == plot_sky_projection_healpy_simple):
-         S += r'''
-\section{Results}
-\subsection{Final Plots}
-
-\begin{figure}[hbt]
- \centering
- \includegraphics[width=12cm]{./Output/plots/HEALPix/sky_projection_HEALPix_Simple_''' + str(Output.nside) + r'''.pdf}
- \caption{Plot of sky projection.}
- \label{fig:S-ProjSimple}
-\end{figure}
-'''
-      elif (Output.HEALpix_mod == plot_sky_projection_healpy_all):
-         S += r'''
-\section{Results}
-\subsection{Final Plots}
-
-\begin{figure}[hbt]
- \centering
- \includegraphics[width=12cm]{./Output/plots/HEALPix/sky_projection_HEALPix_Count_''' + str(Output.nside) + r'''.pdf}
- \caption{Plot of sky projection.}
- \label{fig:S-ProjCount}
-\end{figure}
-
-\begin{figure}[hbt]
- \centering
- \includegraphics[width=12cm]{./Output/plots/HEALPix/sky_projection_HEALPix_Simple_''' + str(Output.nside) + r'''.pdf}
- \caption{Plot of sky projection.}
- \label{fig:S-ProjSimple}
-\end{figure}
-'''
-
-    return S
-
-
-def Report_parameters(Halo,Input,Output):
-    S = r''' .... '''
-    return S
 
 def Report_Acknowledgments():
     S = r'''
@@ -131,8 +73,3 @@ def Report_Acknowledgments():
     return S
 
 
-def Report_bib():
-    S = r''' 
-\end{document}
-'''
-    return S
