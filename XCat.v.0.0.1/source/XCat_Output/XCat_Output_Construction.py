@@ -8,29 +8,29 @@ def Output_plot_zoom_mode(Halo_data,Input_Param,Output_Param):
     while (True):
        ans = Plot_zoom_menu()
        if (ans == 0):
-          Output_Param  = Output_Parameters()
+           Output_Param  = Output_Parameters()
        elif (ans == 1):
-          plot_sky_projection_healpy_count_zoom(Halo_data,Output_Param.nside)
+           plot_sky_projection_healpy_count_zoom(Halo_data,Output_Param)
        elif (ans == 2):
-          plot_sky_projection_healpy_simple_zoom(Halo_data,Output_Param.nside)
+           plot_sky_projection_healpy_simple_zoom(Halo_data,Output_Param)
        elif (ans == 3):
-          plot_sky_projection_healpy_linear_zoom(Halo_data,Output_Param.nside)
+           plot_sky_projection_healpy_linear_zoom(Halo_data,Output_Param)
        elif (ans == 4):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 5):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 6):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 7):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 8):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 9):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 10):
-          break
+           break
 
-def Output_plot(Halo_data,Input_Param,Output_Param):
+def Output_plot(Halo_data,Input_Param,Output_Param,General_Prop):
 
 #    if Output_Parameters.sky_projection :
 #       plot_sky_projection(Halo_data)
@@ -38,37 +38,40 @@ def Output_plot(Halo_data,Input_Param,Output_Param):
     while (True):
        ans = Plot_menu()
        if (ans == 0):
-          print " "
-          Output_Param  = Output_Parameters()
+           print " "
+           Output_Param  = Output_Parameters()
        elif (ans == 1):
-          print " "
-          plot_TxLx(Halo_data)
-          print "(Tx,Lx) plot is created successfully."
-          raw_input("Press enter to continue ... ")
+           print " "
+           if (General_Prop.LxTx_Solved):
+	       plot_TxLx(Halo_data)
+               print "(Tx,Lx) plot is created successfully."
+           else: 
+               print "Please first solve for Tx and Lx then try to plot it ..."
+           raw_input("Press enter to continue ... ")
        elif (ans == 2):
-          print " "
-          plot_sky_projection_healpy_count(Halo_data,Output_Param.nside)
-          print "Sky projection plot on HEALPix is created successfully."
-          raw_input("Press enter to continue ... ")
+           print " "
+           plot_sky_projection_healpy_count(Halo_data,Output_Param.nside)
+           print "Sky projection plot on HEALPix is created successfully."
+           raw_input("Press enter to continue ... ")
        elif (ans == 3):
-          Output_plot_zoom_mode(Halo_data,Input_Param,Output_Param)          
+           Output_plot_zoom_mode(Halo_data,Input_Param,Output_Param)          
        elif (ans == 4):
-          print "IT IS NOT IMPLIMENTED ... "
+           plot_Halo_Surface_Brightness(Halo_data,Input_Param,Output_Param)
        elif (ans == 5):
-          print "IT IS NOT IMPLIMENTED ... "
+           plot_logNlogS(Halo_data,Input_Param,Output_Param,General_Prop)
        elif (ans == 6):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 7):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 8):
-          print "IT IS NOT IMPLIMENTED ... "
+           print "IT IS NOT IMPLIMENTED ... "
        elif (ans == 9):
-          print "IT IS NOT IMPLIMENTED ..."
+           print "IT IS NOT IMPLIMENTED ..."
        elif (ans == 10):
-          break
+           break
 
 def Output_report(Halo_data,Input_Param,Output_Param):
-       Creat_Report(Halo_data,Input_Parameters,Output_Parameters)
-       print "Report is created successfully."
+    Creat_Report(Halo_data,Input_Parameters,Output_Parameters)
+    print "Report is created successfully."
 
 

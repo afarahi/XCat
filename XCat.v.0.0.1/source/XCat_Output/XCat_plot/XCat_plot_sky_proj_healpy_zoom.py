@@ -5,10 +5,12 @@ from matplotlib.pyplot           import *
 from matplotlib                  import rc
 import healpy                      as hp
 
-def plot_sky_projection_healpy_count_zoom(Sliced_Halo_data,nside):
+def plot_sky_projection_healpy_count_zoom(Sliced_Halo_data,Output_Para):
 
     rc('font',family='serif')
     fdir  = './Output/plots/HEALPixZoom/'
+
+    nside = Output_Para.nside
 
     Sl_n  = len(Sliced_Halo_data)
     Z_max = max(Sliced_Halo_data[Sl_n-1].Z_red[:])
@@ -40,7 +42,7 @@ def plot_sky_projection_healpy_count_zoom(Sliced_Halo_data,nside):
 #      pix[j] += 1
  
       clf()
-      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = 200)
+      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
       hp.graticule()
       show()
 
@@ -48,7 +50,7 @@ def plot_sky_projection_healpy_count_zoom(Sliced_Halo_data,nside):
       if save_ques :
         rc('text',usetex=True)
         clf()
-        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = 200)
+        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
         hp.graticule()
         fname = 'sky_projection_HEALPix_Count_%i_%i_%i.pdf'%(nside,(halo_n+1),(k+1))
         title(r'Redshift is between %0.2f and %0.2f'%(Sliced_Halo_data[k].z_min,Sliced_Halo_data[k].z_max),fontsize = 20)
@@ -63,10 +65,12 @@ def plot_sky_projection_healpy_count_zoom(Sliced_Halo_data,nside):
 
 
 
-def plot_sky_projection_healpy_simple_zoom(Sliced_Halo_data,nside):
-
+def plot_sky_projection_healpy_simple_zoom(Sliced_Halo_data,Output_Para):
+ 
     rc('font',family='serif')
     fdir  = './Output/plots/HEALPixZoom/'
+ 
+    nside = Output_Para.nside
 
     Sl_n  = len(Sliced_Halo_data)
     Z_max = max(Sliced_Halo_data[Sl_n-1].Z_red[:])
@@ -94,7 +98,7 @@ def plot_sky_projection_healpy_simple_zoom(Sliced_Halo_data,nside):
         halo_n = halo_n - 1
  
       clf()
-      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = 200)
+      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
       hp.graticule()
       show()
 
@@ -102,7 +106,7 @@ def plot_sky_projection_healpy_simple_zoom(Sliced_Halo_data,nside):
       if save_ques :
         rc('text',usetex=True)
         clf()
-        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = 200)
+        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
         hp.graticule()
         fname = 'sky_projection_HEALPix_Simple_%i_%i_%i.pdf'%(nside,(halo_n+1),(k+1))
         title(r'Redshift is between %0.2f and %0.2f'%(Sliced_Halo_data[k].z_min,Sliced_Halo_data[k].z_max),fontsize = 20)
@@ -117,10 +121,12 @@ def plot_sky_projection_healpy_simple_zoom(Sliced_Halo_data,nside):
     return 0
 
 
-def plot_sky_projection_healpy_linear_zoom(Sliced_Halo_data,nside):
+def plot_sky_projection_healpy_linear_zoom(Sliced_Halo_data,Output_Para):
 
     rc('font',family='serif')
     fdir  = './Output/plots/HEALPixZoom/'
+
+    nside = Output_Para.nside
 
     Sl_n  = len(Sliced_Halo_data)
     Z_max = max(Sliced_Halo_data[Sl_n-1].Z_red[:])
@@ -175,19 +181,19 @@ def plot_sky_projection_healpy_linear_zoom(Sliced_Halo_data,nside):
 #        print j, neighbour
 
       clf()
-      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = 200)
+      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
       hp.graticule()
       show()
-      clf()
-      hp.mollview(pix, fig = 1)
-      hp.graticule()
-      show()
+#      clf()
+#      hp.mollview(pix, fig = 1)
+#      hp.graticule()
+#      show()
 
       save_ques = Read_YN_Input("Do you want to save its picture (please enter Y, y, N, or n)? ")
       if save_ques :
         rc('text',usetex=True)
         clf()
-        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = 200)
+        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
         hp.graticule()
         fname = 'sky_projection_HEALPix_Linear_%i_%i_%i.pdf'%(nside,(halo_n+1),(k+1))
         title(r'Redshift is between %0.2f and %0.2f'%(Sliced_Halo_data[k].z_min,Sliced_Halo_data[k].z_max),fontsize = 20)

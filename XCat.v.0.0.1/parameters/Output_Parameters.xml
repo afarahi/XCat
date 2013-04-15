@@ -3,7 +3,8 @@
      <sky_projection>False</sky_projection>
      <Tx_Lx>True</Tx_Lx>
      <HEALPix_sky_projection>True</HEALPix_sky_projection>
-        <nside>128</nside>
+        <nside>512</nside>
+        <xsize>50</xsize>
         <HEALPix_module>count</HEALPix_module>
         <HEALPix_Cartesian>True</HEALPix_Cartesian>
         <HEALPix_Graticule>True</HEALPix_Graticule>

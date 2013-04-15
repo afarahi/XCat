@@ -21,6 +21,8 @@ class Input_Parameters:
 
       #Features
       self.red_shift_n = read_data_int(tag_name = 'red_shift_slices',file_name = 'parameters/Input_Parameters.xml')
+      self.sample_num  = read_data_int(tag_name = 'Sample_Number',file_name = 'parameters/Input_Parameters.xml')
+      self.SkySqrDeg   = read_data_float(tag_name = 'Squar_Degree',file_name = 'parameters/Input_Parameters.xml')
 
       #Models
       self.Lxm_mod     = read_data_string(tag_name = 'Lxm_model',file_name = 'parameters/Input_Parameters.xml')
@@ -39,7 +41,8 @@ class Input_Parameters:
          print "Please change your file and try again ..."
          raw_input("Press enter to continue ... ")
          pass
-
+      self.SB_beta        = read_data_float(tag_name = 'SB_beta',file_name = 'parameters/Input_Parameters.xml')
+  
       #Exctra Parameters
       self.rTL         = read_data_float(tag_name = 'rTL_correlation',file_name = 'parameters/Input_Parameters.xml')
 

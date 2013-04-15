@@ -10,7 +10,8 @@ def flux_cal(x,y,z,z_redshift,h_0,lnlobs):
    fx = fluxfac * exp(lnlobs) / dlGpc2
    return fx
 
-def LxTx_Solver(Sliced_Halo_data,InputParameters,mode = 1):
+def LxTx_Solver(Sliced_Halo_data,InputParameters):
+   '''
   if (mode == 0):
      n_data = Sliced_Halo_data.number_of_halos
   
@@ -72,6 +73,7 @@ def LxTx_Solver(Sliced_Halo_data,InputParameters,mode = 1):
         Sliced_Halo_data.lgT[i]      = lgT[i]                                               
         Sliced_Halo_data.lgFx[i]     = log10(fx)                                                    
   elif(mode == 1):
+   '''
    Sl_n  = len(Sliced_Halo_data)
    for k in range(Sl_n):
 
@@ -134,9 +136,7 @@ def LxTx_Solver(Sliced_Halo_data,InputParameters,mode = 1):
         Sliced_Halo_data[k].lgLxobs[i]  = lnlobs[i]/ln10                                             
         Sliced_Halo_data[k].lgT[i]      = lgT[i]                                               
         Sliced_Halo_data[k].lgFx[i]     = log10(fx)                                                    
-  else :
-   print "MODE IS NOT RIGHT."
 
-  print "Fluxes, Tempratures, and Luminosities are computed successfully." 
+   print "Fluxes, Tempratures, and Luminosities are computed successfully." 
 
-  return Sliced_Halo_data
+   return Sliced_Halo_data

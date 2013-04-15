@@ -2,6 +2,12 @@
   <Auto_mode>False</Auto_mode>
   <Features>
      <red_shift_slices>2</red_shift_slices>
+     <Surface_Brightness_Samples>
+        <Sample_Number>20000</Sample_Number>
+     </Surface_Brightness_Samples>     
+     <Angular_Area_of_Sky>
+        <Squar_Degree>5</Squar_Degree>
+     </Angular_Area_of_Sky>     
   </Features>
   <Intrinsic_T-L_correlation>
      <rTL_correlation>0.0</rTL_correlation>
@@ -13,6 +19,8 @@
   <Models>
      <Lxm_model>Rozo_et_al_2012</Lxm_model>
      <Txm_model>Henry_et_al_2009</Txm_model>
+     <Surface_Brightness>beta</Surface_Brightness>
+        <SB_beta>0.5</SB_beta>
   </Models>
   <Input_File>
     <File_name>Sample1.fit</File_name>
