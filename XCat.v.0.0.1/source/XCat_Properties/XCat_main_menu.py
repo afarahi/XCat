@@ -14,6 +14,7 @@ def Main_menu():
     print " (8)  Creating Report. "
     print " (9)  Changing Parameters manualy "
     print " (10) Exit. "
+    print " (11) Extract halos data. (For testing purpose)"
     print "-------------------------------------------------------"   
     ans = Read_Integer_Input(" Please enter a number : ")
     return ans

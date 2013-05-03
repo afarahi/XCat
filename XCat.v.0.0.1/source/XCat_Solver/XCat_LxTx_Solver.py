@@ -139,4 +139,3 @@ def LxTx_Solver(Sliced_Halo_data,InputParameters):
 
    print "Fluxes, Tempratures, and Luminosities are computed successfully." 
 
-   return Sliced_Halo_data

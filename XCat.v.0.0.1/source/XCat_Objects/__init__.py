@@ -27,7 +27,7 @@ except ImportError:
                   category=ImportWarning)
 
 try:
-    from XCat_Halos_Sample             import ( Halo_Sample_Object )
+    from XCat_Halo_Brightness_Surface_Sample  import ( Halo_Brightness_Surface_Sample_Object )
 except ImportError:
     warnings.warn("Warning: Cannot import XCat_Halos_Sample",
                   category=ImportWarning)

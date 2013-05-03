@@ -14,8 +14,15 @@ sys.path.insert(0,sys.path[10]+'/XCat_Properties')
 sys.path.insert(0,sys.path[11]+'/XCat_Seperators')
 sys.path.insert(0,sys.path[12]+'/healpy')
 
-from XCat_Tasks import main_tasks
-from test       import test
+from XCat_Tasks import main_tasks, test_tasks
 
-main_tasks()
-#test()
+print "(1) MAIN MODE"
+print "(2) TEST MODE"
+
+ans = int(raw_input("Please enter the mode number : "))
+if (ans == 1):
+    main_tasks()
+if (ans == 2):
+    test_tasks()
+else:
+    pass

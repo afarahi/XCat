@@ -1,12 +1,12 @@
 <Input_Parameters>
   <Auto_mode>False</Auto_mode>
   <Features>
-     <red_shift_slices>2</red_shift_slices>
+     <red_shift_slices>1</red_shift_slices>
      <Surface_Brightness_Samples>
-        <Sample_Number>20000</Sample_Number>
+        <Sample_Number>1</Sample_Number>
      </Surface_Brightness_Samples>     
      <Angular_Area_of_Sky>
-        <Squar_Degree>5</Squar_Degree>
+        <Squar_Degree>10</Squar_Degree>
      </Angular_Area_of_Sky>     
   </Features>
   <Intrinsic_T-L_correlation>
@@ -14,7 +14,7 @@
   </Intrinsic_T-L_correlation>
   <Limits>
     <F_limit>2.5e-14</F_limit>
-    <Mass_limit>1.0e13</Mass_limit>
+    <Mass_limit>5.0e12</Mass_limit>
   </Limits>
   <Models>
      <Lxm_model>Rozo_et_al_2012</Lxm_model>

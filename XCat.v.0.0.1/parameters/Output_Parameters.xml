@@ -3,10 +3,13 @@
      <sky_projection>False</sky_projection>
      <Tx_Lx>True</Tx_Lx>
      <HEALPix_sky_projection>True</HEALPix_sky_projection>
-        <nside>512</nside>
-        <xsize>50</xsize>
-        <HEALPix_module>count</HEALPix_module>
-        <HEALPix_Cartesian>True</HEALPix_Cartesian>
+        <nside>1024</nside>
+        <xsize>100</xsize>
+        <resolution>0.5</resolution>
+        <resolution_unit_degree>False</resolution_unit_degree>
+        <log_scale>True</log_scale>
+        <HEALPix_module>All</HEALPix_module>
+        <HEALPix_Cartesian>False</HEALPix_Cartesian>
         <HEALPix_Graticule>True</HEALPix_Graticule>
   </Plots>
   <Report>True</Report>

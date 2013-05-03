@@ -21,7 +21,7 @@ class Input_Parameters:
 
       #Features
       self.red_shift_n = read_data_int(tag_name = 'red_shift_slices',file_name = 'parameters/Input_Parameters.xml')
-      self.sample_num  = read_data_int(tag_name = 'Sample_Number',file_name = 'parameters/Input_Parameters.xml')
+      self.samp_num_co = read_data_float(tag_name = 'Sample_Number',file_name = 'parameters/Input_Parameters.xml')
       self.SkySqrDeg   = read_data_float(tag_name = 'Squar_Degree',file_name = 'parameters/Input_Parameters.xml')
 
       #Models

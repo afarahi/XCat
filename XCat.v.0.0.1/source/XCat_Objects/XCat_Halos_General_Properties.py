@@ -3,12 +3,20 @@ class Halo_General_Properties():
 
    def __init__(self):
 
+       # General Properties of Halo data
        self.total_sky_covered_deg2 = 0.0
        self.Z_redshift_max         = 0.0
+       
+       # Halos Treatment
        self.Hala_data_existence    = False
-       self.LxTx_Solved            = False
        self.Redshift_peaces        = False
        self.Pix_separator          = False
+
+       # Solvers Boolean
+       self.LxTx_Solved            = False
+
+       # Maybe plots Boolean for creating report!!!
+       # JUST FOR FUTURE REFERENCE
 
    def update(self,Halo_data):
 

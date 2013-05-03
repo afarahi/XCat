@@ -20,6 +20,7 @@ def Read_Halo_Cat_fit(file_name = None):
 #    print "DONE"
 #    pyfits.writeto('new.fit',Halos_info,Halos_head)
 #    print Halos_info.field('HALOPX')[2]
+#    print Halos_info[2][17]
     return Halos_info
 
 #HALO FILE STRUCTURE:

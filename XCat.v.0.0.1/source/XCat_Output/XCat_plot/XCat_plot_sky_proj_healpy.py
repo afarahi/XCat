@@ -31,7 +31,8 @@ def plot_sky_projection_healpy_count(Sliced_Halo_data,nside):
         title(r'sky projection for redshift between %0.2f and %0.2f'%(Sliced_Halo_data[k].z_min,Sliced_Halo_data[k].z_max),fontsize = 20)
         print 'Saving plot', fname
         savefig(fdir+fname,bbox_inches='tight')
-    rc('text',usetex=False)  
+    rc('text',usetex=False)
+    close()  
     return 0
 
 
@@ -59,8 +60,8 @@ def plot_sky_projection_healpy_simple(Sliced_Halo_data,nside):
         title(r'sky projection for redshift between %0.2f and %0.2f'%(Sliced_Halo_data[k].z_min,Sliced_Halo_data[k].z_max),fontsize = 20)
         print 'Saving plot', fname
         savefig(fdir+fname,bbox_inches='tight')
-    rc('text',usetex=False)  
-
+    rc('text',usetex=False)
+    close()
     return 0
 
 

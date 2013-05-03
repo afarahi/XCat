@@ -26,10 +26,15 @@ def plot_sky_projection_healpy_count_zoom(Sliced_Halo_data,Output_Para):
 
       pix     = zeros(12*nside**2)
       n       = len(Sliced_Halo_data[k].RA[:])
+      if (n == 0):
+         print "There is no halo in this piece of redshift, please choos another one ..."
+         raw_input("Press enter to continue ... ")
+         break 
+         
       for i in range(n):
         j    = hp.ang2pix(nside,DtoR*(90.0-Sliced_Halo_data[k].DEC[i]),DtoR*(Sliced_Halo_data[k].RA[i]))
         pix[j] += 1
-             
+           
       halo_n = Read_Integer_Input("We have %i halos in this slice which one you want to exctract ? "%n)
       halo_n = halo_n - 1
       while(halo_n > (n-1) or halo_n < 0 ):
@@ -42,7 +47,7 @@ def plot_sky_projection_healpy_count_zoom(Sliced_Halo_data,Output_Para):
 #      pix[j] += 1
  
       clf()
-      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
+      hp.gnomview(pix, fig=1 , rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0) , xsize=Output_Para.xsize , reso=Output_Para.resolution , degree=Output_Para.resol_degree)
       hp.graticule()
       show()
 
@@ -50,16 +55,14 @@ def plot_sky_projection_healpy_count_zoom(Sliced_Halo_data,Output_Para):
       if save_ques :
         rc('text',usetex=True)
         clf()
-        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
+        hp.gnomview(pix, fig=1 , rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0) , xsize=Output_Para.xsize , reso=Output_Para.resolution , degree=Output_Para.resol_degree)
         hp.graticule()
         fname = 'sky_projection_HEALPix_Count_%i_%i_%i.pdf'%(nside,(halo_n+1),(k+1))
         title(r'Redshift is between %0.2f and %0.2f'%(Sliced_Halo_data[k].z_min,Sliced_Halo_data[k].z_max),fontsize = 20)
         print 'Saving plot', fname
-#        savefig(fdir+fname,bbox_inches='tight')
         savefig(fdir+fname,bbox_inches='tight')
         rc('text',usetex=False)
       ques = False
-#      ques = Read_YN_Input("Do you want to extract another halo (please enter Y, y, N, or n)? ")
         
     return 0
 
@@ -86,6 +89,11 @@ def plot_sky_projection_healpy_simple_zoom(Sliced_Halo_data,Output_Para):
 
       pix     = zeros(12*nside**2)
       n       = len(Sliced_Halo_data[k].RA[:])
+      if (n == 0):
+         print "There is no halo in this piece of redshift, please choos another one ..."
+         raw_input("Press enter to continue ... ")
+         break 
+
       for i in range(n):
         j    = hp.ang2pix(nside,DtoR*(90.0-Sliced_Halo_data[k].DEC[i]),DtoR*(Sliced_Halo_data[k].RA[i]))
         pix[j] += 10.0**Sliced_Halo_data[k].lgFx[i]
@@ -98,15 +106,16 @@ def plot_sky_projection_healpy_simple_zoom(Sliced_Halo_data,Output_Para):
         halo_n = halo_n - 1
  
       clf()
-      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
+      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0) , xsize=Output_Para.xsize , reso=Output_Para.resolution , degree=Output_Para.resol_degree)
       hp.graticule()
       show()
+      close()
 
       save_ques = Read_YN_Input("Do you want to save its picture (please enter Y, y, N, or n)? ")
       if save_ques :
         rc('text',usetex=True)
         clf()
-        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
+        hp.gnomview(pix, fig=1 , rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0) , xsize=Output_Para.xsize , reso=Output_Para.resolution , degree=Output_Para.resol_degree)
         hp.graticule()
         fname = 'sky_projection_HEALPix_Simple_%i_%i_%i.pdf'%(nside,(halo_n+1),(k+1))
         title(r'Redshift is between %0.2f and %0.2f'%(Sliced_Halo_data[k].z_min,Sliced_Halo_data[k].z_max),fontsize = 20)
@@ -114,9 +123,9 @@ def plot_sky_projection_healpy_simple_zoom(Sliced_Halo_data,Output_Para):
 #        savefig(fdir+fname,bbox_inches='tight')
         savefig(fdir+fname)
         rc('text',usetex=False)
+        close()
 
       ques = False
-#      ques = Read_YN_Input("Do you want to extract another halo (please enter Y, y, N, or n)? ")
 
     return 0
 
@@ -142,6 +151,11 @@ def plot_sky_projection_healpy_linear_zoom(Sliced_Halo_data,Output_Para):
 
       pix     = zeros(12*nside**2)
       n       = len(Sliced_Halo_data[k].RA[:])
+      if (n == 0):
+         print "There is no halo in this piece of redshift, please choos another one ..."
+         raw_input("Press enter to continue ... ")
+         break 
+
       for i in range(n):
         j    = hp.ang2pix(nside,DtoR*(90.0-Sliced_Halo_data[k].DEC[i]),DtoR*(Sliced_Halo_data[k].RA[i]))
         neighbour = hp.get_all_neighbours(nside,j)
@@ -181,19 +195,19 @@ def plot_sky_projection_healpy_linear_zoom(Sliced_Halo_data,Output_Para):
 #        print j, neighbour
 
       clf()
-      hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
+      hp.gnomview(pix, fig=1 , rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0) , xsize=Output_Para.xsize , reso=Output_Para.resolution , degree=Output_Para.resol_degree)
       hp.graticule()
       show()
 #      clf()
 #      hp.mollview(pix, fig = 1)
 #      hp.graticule()
 #      show()
-
+      close()
       save_ques = Read_YN_Input("Do you want to save its picture (please enter Y, y, N, or n)? ")
       if save_ques :
         rc('text',usetex=True)
         clf()
-        hp.gnomview(pix, fig = 1 ,rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0),xsize = Output_Para.xsize)
+        hp.gnomview(pix, fig=1 , rot=(Sliced_Halo_data[k].RA[halo_n],Sliced_Halo_data[k].DEC[halo_n],0.0) , xsize=Output_Para.xsize , reso=Output_Para.resolution , degree=Output_Para.resol_degree)
         hp.graticule()
         fname = 'sky_projection_HEALPix_Linear_%i_%i_%i.pdf'%(nside,(halo_n+1),(k+1))
         title(r'Redshift is between %0.2f and %0.2f'%(Sliced_Halo_data[k].z_min,Sliced_Halo_data[k].z_max),fontsize = 20)
@@ -201,7 +215,7 @@ def plot_sky_projection_healpy_linear_zoom(Sliced_Halo_data,Output_Para):
 #        savefig(fdir+fname,bbox_inches='tight')
         savefig(fdir+fname)
         rc('text',usetex=False)
-
+        close()
       ques = False
 #      ques = Read_YN_Input("Do you want to extract another halo (please enter Y, y, N, or n)? ")
 
